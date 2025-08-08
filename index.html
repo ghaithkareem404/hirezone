@@ -1,43 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة التوظيف</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة التوظيف</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container nav">
-            <div class="logo">HireZone!</div>
-            <nav>
-                <a href="about.html">عن المنصة</a>
-                <a href="#">الوظائف</a>
-                <a href="#">الرئيسية</a>
-            </nav>
-           <a href="login.html" class="login-btn">تسجيل الدخول</a>
-        </div>
-    </header>
+  <header>
+    <div class="container nav">
+      <div class="logo">HireZone!</div>
+      <nav>
+        <a href="about.html">عن المنصة</a>
+        <a href="#">الوظائف</a>
+        <a href="index.html" class="active">الرئيسية</a>
+      </nav>
+      <a href="login.html" class="login-btn btn ripple">تسجيل الدخول</a>
+    </div>
+  </header>
 
-    <section class="hero">
-        <h1>اعثر على <span>وظيفتك المثالية</span></h1>
-        <p>المنصة الرائدة التي تربط بين أفضل المواهب والشركات المتميزة. ابدأ رحلتك المهنية اليوم.</p>
-        <div class="buttons">
-            <a href="#" class="btn primary">ابدأ الآن</a>
-            <a href="#" class="btn secondary">تصفح الوظائف</a>
-        </div>
-    </section>
+  <section class="hero">
+    <h1 data-reveal>اعثر على <span>وظيفتك المثالية</span></h1>
+    <p data-reveal-delay="100">المنصة الرائدة التي تربط بين أفضل المواهب والشركات المتميزة. ابدأ رحلتك المهنية اليوم.</p>
+    <div class="buttons" data-reveal-delay="200">
+      <a href="#" class="btn primary ripple">ابدأ الآن</a>
+      <a href="#" class="btn secondary ripple">تصفح الوظائف</a>
+    </div>
+  </section>
 
-    <section class="stats">
-        <div class="stat"><h2>10,000+</h2><p>باحث عن عمل</p></div>
-        <div class="stat"><h2>500+</h2><p>شركة</p></div>
-        <div class="stat"><h2>2,500+</h2><p>وظيفة متاحة</p></div>
-        <div class="stat"><h2>95%</h2><p>معدل النجاح</p></div>
-    </section>
+  <section class="stats" data-reveal>
+    <div class="stat"><h2 class="count" data-to="10000">0</h2><p>باحث عن عمل</p></div>
+    <div class="stat"><h2 class="count" data-to="500">0</h2><p>شركة</p></div>
+    <div class="stat"><h2 class="count" data-to="2500">0</h2><p>وظيفة متاحة</p></div>
+    <div class="stat"><h2 class="count" data-to="95" data-suffix="%">0</h2><p>معدل النجاح</p></div>
+  </section>
 
-    <footer>
-        <p>© 2025 منصة التوظيف - جميع الحقوق محفوظة</p>
-    </footer>
+  <footer>
+    <p>© <span id="year"></span> منصة التوظيف - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

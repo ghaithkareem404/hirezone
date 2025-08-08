@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | منصة التوظيف</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+  <header>
+    <div class="container nav">
+      <div class="logo">HireZone!</div>
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="#">الوظائف</a>
+        <a href="#">عن المنصة</a>
+      </nav>
+      <a href="login.html" class="login-btn">تسجيل الدخول</a>
+    </div>
+  </header>
+
+  <main class="login-hero">
+    <div class="login-card">
+      <h1 class="login-title">تسجيل الدخول</h1>
+
+      <!-- Tabs -->
+      <div class="tabs" role="tablist" aria-label="اختيار نوع الحساب">
+        <button class="tab active" data-tab="seeker" role="tab" aria-selected="true">باحث عن عمل</button>
+        <button class="tab" data-tab="company" role="tab" aria-selected="false">شركة</button>
+      </div>
+
+      <!-- Forms -->
+      <form class="form visible" id="form-seeker" aria-labelledby="tab-seeker">
+        <input type="email" class="input" placeholder="البريد الإلكتروني" required>
+        <input type="password" class="input" placeholder="كلمة المرور" required minlength="6">
+        <label class="check">
+          <input type="checkbox"> تذكرني
+        </label>
+        <button type="submit" class="btn primary full">تسجيل الدخول</button>
+        <div class="helpers">
+          <a href="#">نسيت كلمة المرور؟</a>
+          <span>—</span>
+          <a href="#">إنشاء حساب كباحث</a>
+        </div>
+      </form>
+
+      <form class="form" id="form-company" aria-labelledby="tab-company">
+        <input type="email" class="input" placeholder="البريد المؤسسي" required>
+        <input type="password" class="input" placeholder="كلمة المرور" required minlength="6">
+        <input type="text" class="input" placeholder="رمز الشركة (اختياري)">
+        <label class="check">
+          <input type="checkbox"> تذكرني
+        </label>
+        <button type="submit" class="btn primary full">تسجيل الدخول للشركات</button>
+        <div class="helpers">
+          <a href="#">نسيت كلمة المرور؟</a>
+          <span>—</span>
+          <a href="#">إنشاء حساب شركة</a>
+        </div>
+      </form>
+
+      <!-- Social (اختياري) -->
+      <div class="social">
+        <span class="divider-text">أو</span>
+        <div class="social-row">
+          <button class="btn outline full">تسجيل عبر Google</button>
+          <button class="btn outline full">تسجيل عبر LinkedIn</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> منصة التوظيف - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    // سنة الفوتر
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // تبويب النماذج
+    const tabs = document.querySelectorAll('.tabs .tab');
+    const seekerForm = document.getElementById('form-seeker');
+    const companyForm = document.getElementById('form-company');
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (btn.dataset.tab === 'seeker') {
+          seekerForm.classList.add('visible');
+          companyForm.classList.remove('visible');
+        } else {
+          companyForm.classList.add('visible');
+          seekerForm.classList.remove('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

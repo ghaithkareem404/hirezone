@@ -89,98 +89,92 @@
       <div class="alt">
         لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
       </div>
+
+      <div class="back-home">
+        <a href="index.html">← العودة إلى الصفحة الرئيسية</a>
+      </div>
     </section>
   </main>
- </script>
-  <div class="back-home">
-  <a href="index.html">← العودة إلى الصفحة الرئيسية</a>
-</div>
 
   <script>
-  // تبديل نوع الحساب + إظهار حقول الشركة
-  const tabs = document.querySelectorAll('.tabs .tab');
-  const companyFields = document.getElementById('companyFields');
-  let accountType = 'seeker';
+    // تبديل نوع الحساب + إظهار حقول الشركة
+    const tabs = document.querySelectorAll('.tabs .tab');
+    const companyFields = document.getElementById('companyFields');
+    let accountType = 'seeker';
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      accountType = tab.dataset.type;
-      companyFields.classList.toggle('hidden', accountType !== 'company');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        accountType = tab.dataset.type;
+        companyFields.classList.toggle('hidden', accountType !== 'company');
+      });
     });
-  });
 
-  // تحقق أساسي من الحقول
-  const form = document.getElementById('registerForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const fullName = document.getElementById('fullName');
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const confirm = document.getElementById('confirm');
-    const terms = document.getElementById('terms');
-    const companyName = document.getElementById('companyName');
-    const companyLocation = document.getElementById('companyLocation');
+    // تحقق أساسي من الحقول
+    const form = document.getElementById('registerForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fullName = document.getElementById('fullName');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+      const confirm = document.getElementById('confirm');
+      const terms = document.getElementById('terms');
+      const companyName = document.getElementById('companyName');
+      const companyLocation = document.getElementById('companyLocation');
 
-    // مسح رسائل الأخطاء
-    form.querySelectorAll('.err').forEach(el => el.textContent = '');
+      // مسح رسائل الأخطاء
+      form.querySelectorAll('.err').forEach(el => el.textContent = '');
 
-    let valid = true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      let valid = true;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-    if (!fullName.value.trim()) {
-      fullName.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'الاسم مطلوب';
-      valid = false;
-    }
-    if (!emailRegex.test(email.value.trim())) {
-      email.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'بريد غير صالح';
-      valid = false;
-    }
-    if (password.value.length < 6) {
-      password.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'الحد الأدنى 6 أحرف';
-      valid = false;
-    }
-    if (confirm.value !== password.value) {
-      confirm.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'كلمتا المرور غير متطابقتين';
-      valid = false;
-    }
-    if (!terms.checked) {
-      alert('يجب الموافقة على الشروط والمتطلبات.');
-      valid = false;
-    }
-    if (accountType === 'company') {
-      if (!companyName.value.trim()) {
-        companyName.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'اسم الشركة مطلوب';
+      if (!fullName.value.trim()) {
+        fullName.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'الاسم مطلوب';
         valid = false;
       }
-      if (!companyLocation.value.trim()) {
-        companyLocation.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'موقع الشركة مطلوب';
+      if (!emailRegex.test(email.value.trim())) {
+        email.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'بريد غير صالح';
         valid = false;
       }
-    }
+      if (password.value.length < 6) {
+        password.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'الحد الأدنى 6 أحرف';
+        valid = false;
+      }
+      if (confirm.value !== password.value) {
+        confirm.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'كلمتا المرور غير متطابقتين';
+        valid = false;
+      }
+      if (!terms.checked) {
+        alert('يجب الموافقة على الشروط والمتطلبات.');
+        valid = false;
+      }
+      if (accountType === 'company') {
+        if (!companyName.value.trim()) {
+          companyName.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'اسم الشركة مطلوب';
+          valid = false;
+        }
+        if (!companyLocation.value.trim()) {
+          companyLocation.nextElementSibling.nextElementSibling.nextElementSibling.textContent = 'موقع الشركة مطلوب';
+          valid = false;
+        }
+      }
 
-    if (!valid) return;
+      if (!valid) return;
 
-    // نجاح مبدئي (بدون باك-إند)
-    alert('تم إنشاء الحساب بنجاح!');
-    // هنا يمكنك إرسال البيانات إلى الخادم عبر fetch(...)
-  });
+      alert('تم إنشاء الحساب بنجاح!');
+    });
 
-  // حركة ظهور بسيطة عند التحميل
-  document.querySelectorAll('[data-reveal]').forEach(el => {
-    el.style.opacity = 0;
-    el.style.transform = 'translateY(10px)';
-    setTimeout(() => {
-      el.style.transition = 'opacity .5s ease, transform .5s ease';
-      el.style.opacity = 1;
-      el.style.transform = 'translateY(0)';
-    }, 50);
-  });
+    // حركة ظهور بسيطة عند التحميل
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(10px)';
+      setTimeout(() => {
+        el.style.transition = 'opacity .5s ease, transform .5s ease';
+        el.style.opacity = 1;
+        el.style.transform = 'translateY(0)';
+      }, 50);
+    });
   </script>
-  <div class="back-home">
-  <a href="index.html">← العودة إلى الصفحة الرئيسية</a>
-</div>
-
 </body>
 </html>

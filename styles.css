@@ -96,3 +96,119 @@ footer {
     padding: 20px;
     background: rgba(0,0,0,0.1);
 }
+/* ===== صفحة تسجيل الدخول ===== */
+.login-page {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: #fff;
+}
+
+.login-hero {
+  min-height: calc(100vh - 150px);
+  display: grid;
+  place-items: center;
+  padding: 40px 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 50px rgba(2,6,23,0.15);
+  padding: 28px;
+}
+
+.login-title {
+  margin: 0 0 14px;
+  text-align: center;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 6px;
+  margin-bottom: 16px;
+}
+.tabs .tab {
+  border: 0;
+  background: transparent;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #475569;
+}
+.tabs .tab.active {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37,117,252,0.35);
+}
+
+.form { display: none; }
+.form.visible { display: block; }
+
+.form .input {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  background: #fff;
+}
+.form .input:focus {
+  outline: none;
+  border-color: #6a11cb;
+  box-shadow: 0 0 0 3px rgba(106,17,203,0.15);
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-size: 14px;
+  margin: 6px 0 14px;
+}
+
+.btn.full { width: 100%; }
+
+.social { margin-top: 14px; }
+.social .divider-text {
+  display: block;
+  text-align: center;
+  color: #64748b;
+  margin: 6px 0 12px;
+}
+.social-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.btn.outline {
+  background: #fff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+.helpers {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.helpers a { color: #2563eb; text-decoration: none; }
+.helpers a:hover { text-decoration: underline; }
+
+/* تكيّف */
+@media (max-width: 520px) {
+  .social-row { grid-template-columns: 1fr; }
+}
+

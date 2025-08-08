@@ -71,3 +71,24 @@ body{margin:0;font-family:'Tajawal',system-ui,-apple-system,Segoe UI,Roboto,'Hel
 
 /* Reveal */
 [data-reveal]{opacity:0;transform:translateY(10px)}
+.back-home {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-home a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  background: linear-gradient(90deg, #4f46e5, #9333ea);
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.back-home a:hover {
+  background: linear-gradient(90deg, #4338ca, #7e22ce);
+  transform: translateY(-2px);
+}
+

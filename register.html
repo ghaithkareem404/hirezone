@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب | HireZone</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+<section class="auth-page">
+  <div class="auth-card" data-reveal>
+    <h2>إنشاء حساب جديد</h2>
+
+    <form id="registerForm">
+      <!-- نوع الحساب -->
+      <div class="field">
+        <label>نوع الحساب</label>
+        <select id="accountType" required>
+          <option value="">اختر...</option>
+          <option value="seeker">باحث عن عمل</option>
+          <option value="company">شركة</option>
+        </select>
+      </div>
+
+      <!-- حقول عامة -->
+      <div class="field">
+        <label>الاسم الكامل</label>
+        <input type="text" required>
+      </div>
+
+      <div class="field">
+        <label>البريد الإلكتروني</label>
+        <input type="email" required>
+      </div>
+
+      <div class="field">
+        <label>كلمة المرور</label>
+        <input type="password" required>
+      </div>
+
+      <!-- حقول للشركات فقط -->
+      <div id="companyFields" style="display:none;">
+        <div class="field">
+          <label>اسم الشركة</label>
+          <input type="text">
+        </div>
+        <div class="field">
+          <label>موقع الشركة</label>
+          <input type="text">
+        </div>
+      </div>
+
+      <button type="submit" class="btn primary">إنشاء الحساب</button>
+    </form>
+
+    <p class="switch-link">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+  </div>
+
+  <!-- فقاعات خلفية -->
+  <div class="bg-bubble b1"></div>
+  <div class="bg-bubble b2"></div>
+</section>
+
+<script>
+  // إظهار/إخفاء حقول الشركة
+  document.getElementById('accountType').addEventListener('change', function() {
+    document.getElementById('companyFields').style.display = this.value === 'company' ? 'block' : 'none';
+  });
+
+  // معالجة النموذج (مبدئيًا)
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('تم إنشاء الحساب بنجاح!');
+  });
+</script>
+
+</body>
+</html>

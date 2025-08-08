@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول | منصة التوظيف</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* زر العودة */
+    .back-home {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-home a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #4f46e5, #9333ea);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .back-home a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.5);
+    }
+  </style>
 </head>
 <body class="login-page">
   <div class="bg-bubble b1"></div>
@@ -25,29 +46,14 @@
 
   <main class="login-hero">
     <div class="login-card glass" data-reveal>
-      <div class="login-logo">📄      <form class="form" id="form-company">
-        ...
-      </form>
-
-      <!-- زر العودة للصفحة الرئيسية -->
-      <div class="back-home">
-        <a href="index.html">← العودة إلى الصفحة الرئيسية</a>
-      </div>
-    </div> <!-- إغلاق login-card -->
-
-      </div>
-    </div> <!-- إغلاق login-card -->
-</div>
       <h1 class="login-title">تسجيل الدخول</h1>
       <p class="login-sub">اختر نوع حسابك للتسجيل</p>
 
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="seeker" role="tab" aria-selected="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.33 0-8 2.17-8 5v1h16v-1c0-2.83-3.67-5-8-5Z" fill="currentColor"/></svg>
           باحث عن عمل
         </button>
         <button class="tab" data-tab="company" role="tab" aria-selected="false">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v6h10v12H3Zm2 2v14h6V5Zm8 6v8h6v-8Z" fill="currentColor"/></svg>
           شركة
         </button>
       </div>
@@ -56,25 +62,15 @@
         <label class="field float">
           <input type="email" placeholder=" " required>
           <span>البريد الإلكتروني</span>
-          <i class="ico">
-            <svg viewBox="0 0 24 24"><path d="M2 6h20v12H2Zm10 5L2 7m20 0-10 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </i>
         </label>
-
         <label class="field float">
           <input type="password" placeholder=" " required minlength="6">
           <span>كلمة المرور</span>
-          <i class="ico">
-            <svg viewBox="0 0 24 24"><path d="M6 10h12v10H6Zm2 0V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </i>
         </label>
-
         <label class="check">
           <input type="checkbox"> تذكرني
         </label>
-
         <button type="submit" class="btn gradient full ripple">دخول كباحث عن عمل</button>
-
         <div class="helpers">
           <a href="#">نسيت كلمة المرور؟</a>
           <span>•</span>
@@ -86,41 +82,37 @@
         <label class="field float">
           <input type="email" placeholder=" " required>
           <span>البريد المؤسسي</span>
-          <i class="ico">
-            <svg viewBox="0 0 24 24"><path d="M2 6h20v12H2Zm10 5L2 7m20 0-10 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </i>
         </label>
-
         <label class="field float">
           <input type="password" placeholder=" " required minlength="6">
           <span>كلمة المرور</span>
-          <i class="ico">
-            <svg viewBox="0 0 24 24"><path d="M6 10h12v10H6Zm2 0V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </i>
         </label>
-
-
-
         <label class="check">
           <input type="checkbox"> تذكرني
         </label>
-
         <button type="submit" class="btn gradient full ripple">تسجيل الدخول للشركات</button>
-
         <div class="helpers">
           <a href="#">نسيت كلمة المرور؟</a>
           <span>•</span>
           <a href="#">إنشاء حساب شركة</a>
         </div>
       </form>
+
+      <!-- زر العودة للصفحة الرئيسية -->
+      <div class="back-home">
+        <a href="index.html">← العودة إلى الصفحة الرئيسية</a>
+      </div>
+
     </div>
   </main>
 
   <footer class="glass-footer">
-    <p>© <span id="year"></span>  منصة التوظيف - جميع الحقوق محفوظة لشركة UpKnowledge </p>
+    <p>© <span id="year"></span> منصة التوظيف - جميع الحقوق محفوظة لشركة UpKnowledge </p>
   </footer>
 
   <script src="app.js"></script>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

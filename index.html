@@ -88,50 +88,64 @@
   </form>
 
   <!-- Supabase JS v2 -->
-<!-- Supabase JS v2 -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  // تهيئة Supabase بمشروعك
-   const subForm   = document.getElementById('subscribeForm');
-  const emailInput= document.getElementById('email');
-  const statusMsg = document.getElementById('status');
+  // تهيئة Supabase
+  const SUPABASE_URL = "https://rrcjlkseuenjhnravytk.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyY2psa3NldWVuamhucmF2eXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2NTc2NDIsImV4cCI6MjA3MDIzMzY0Mn0.YOtEZzORHAwMZPoXCQwQo7eQudNuiyupRYUeDDOMAto";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // عناصر الواجهة
+  const subForm   = document.getElementById('subscribeForm');
+  const emailIn   = document.getElementById('email');
+  const statusEl  = document.getElementById('status');
+
+  function setStatus(color, text) {
+    statusEl.style.color = color;
+    statusEl.textContent = text;
+  }
 
   subForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = (emailInput.value || '').trim().toLowerCase(); // توحيد الحالة لتفادي التكرار بحروف كبيرة/صغيرة
+    const email = (emailIn.value || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-      statusMsg.style.color = '#ef4444';
-      statusMsg.textContent = 'الرجاء إدخال بريد صحيح.';
+      setStatus('#ef4444', 'الرجاء إدخال بريد صحيح.');
       return;
     }
 
-    statusMsg.style.color = '#ddd';
-    statusMsg.textContent = 'جاري التسجيل...';
+    setStatus('#ddd', 'جاري التسجيل...');
 
-    const { error } = await supabaseClient
-      .from('launch_emails')
-      .insert([{ email }]);
+    try {
+      const { error } = await supabaseClient
+        .from('launch_emails')
+        .insert([{ email }]);  // INSERT فقط (لا SELECT)
 
-    if (error) {
-      // 23505 = unique_violation (تكرار)
-      if (error.code === '23505' || (error.message || '').includes('duplicate key')) {
-        statusMsg.style.color = '#f59e0b';
-        statusMsg.textContent = 'هذا البريد مسجّل لدينا بالفعل ✔️';
-      } else {
-        console.error('Supabase insert error:', error);
-        statusMsg.style.color = '#ef4444';
-        statusMsg.textContent = 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.';
+      if (error) {
+        // 23505 = تكرار (UNIQUE)
+        if (error.code === '23505' || (error.message || '').includes('duplicate key')) {
+          setStatus('#f59e0b', 'هذا البريد مسجّل لدينا بالفعل ✔️');
+        }
+        // 42501 أو RLS
+        else if ((error.message || '').includes('row-level security') || error.code === '42501') {
+          setStatus('#ef4444', 'صلاحيات الإدخال مرفوضة (RLS). تحقق من سياسات الجدول.');
+        }
+        else {
+          console.error('Supabase error:', error);
+          setStatus('#ef4444', 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.');
+        }
+        return;
       }
-      return;
-    }
 
-    statusMsg.style.color = '#16a34a';
-    statusMsg.textContent = 'تم الاشتراك بنجاح! سنبلغك عند الإطلاق 🎉';
-    emailInput.value = '';
+      setStatus('#16a34a', 'تم الاشتراك بنجاح! سنبلغك عند الإطلاق 🎉');
+      emailIn.value = '';
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      setStatus('#ef4444', 'تعذّر الإرسال (تأكد من الاتصال بالإنترنت).');
+    }
   });
 </script>
-
 
 </body>
 </html>

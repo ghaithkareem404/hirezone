@@ -1,171 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta http-equiv="refresh" content="0; URL='coming-soon.html'" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HireZone</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
-
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav">
-      <div class="logo">HireZone!</div>
-      <nav>
-        <a href="about.html">عن المنصة</a>
-        <a href="#">الوظائف</a>
-        <a href="index.html" class="active">الرئيسية</a>
-        <a href="#contact">اتصل بنا</a>
-      </nav>
-      <a href="login.html" class="btn pill primary">تسجيل الدخول</a>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-copy" data-reveal>
-        <h1>اعثر على <span>وظيفتك المثالية</span></h1>
-        <p>المنصة الرائدة التي تربط بين أفضل المواهب والشركات المتميزة. ابدأ رحلتك المهنية اليوم.</p>
-        <div class="actions">
-          <a href="#" class="btn xl primary">ابدأ الآن</a>
-          <a href="#" class="btn xl ghost">تصفح الوظائف</a>
-        </div>
-      </div>
-      <div class="hero-visual" data-reveal-delay="120" aria-hidden="true">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="glass-pane">
-          <div class="pane-line"></div>
-          <div class="pane-line"></div>
-          <div class="pane-line"></div>
-          <div class="pane-line"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="stats">
-    <div class="container stats-grid" data-reveal>
-      <div class="stat-card">
-        <h2 class="count" data-to="10000">10,000+</h2>
-        <p>باحث عن عمل</p>
-      </div>
-      <div class="stat-card">
-        <h2 class="count" data-to="500">500+</h2>
-        <p>شركة</p>
-      </div>
-      <div class="stat-card">
-        <h2 class="count" data-to="2500">2,500+</h2>
-        <p>وظيفة متاحة</p>
-      </div>
-      <div class="stat-card">
-        <h2 class="count" data-to="95" data-suffix="%">95%</h2>
-        <p>معدل النجاح</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="features">
-    <div class="container features-grid" data-reveal>
-      <article class="feature">
-        <h3>مطابقة ذكية</h3>
-        <p>خوارزميات تقارن المهارات والخبرة والموقع لتقديم أفضل الوظائف المناسبة لك.</p>
-      </article>
-      <article class="feature">
-        <h3>لوحة تحكم سهلة</h3>
-        <p>تتبّع طلباتك واعرف حالتها لحظيًا من مكان واحد.</p>
-      </article>
-      <article class="feature">
-        <h3>بروفايل احترافي</h3>
-        <p>ملف مهني غني مع دعم تحميل السيرة الذاتية وروابط أعمالك.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Contact (نفس كودك تمامًا — لا تغيير في الحقول/المعرّفات) -->
-  <section id="contact" style="padding: 20px; background: #f5f5f5;">
-    <h2>اتصل بنا</h2>
-    <form id="contactForm">
-      <label>الاسم:</label>
-      <input type="text" id="name" required>
-
-      <label>البريد الإلكتروني:</label>
-      <input type="email" id="email" required>
-
-      <label>الرسالة:</label>
-      <textarea id="message" required></textarea>
-
-      <button type="submit">إرسال</button>
-    </form>
-    <p id="responseMsg" style="color: green;"></p>
-  </section>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> منصة التوظيف - جميع الحقوق محفوظة</p>
-    </div>
-  </footer>
-
-  <!-- سكربتات بسيطة للأنيميشن/السنة -->
-  <script>
-    // سنة الفوتر
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ظهور لطيف للعناصر
-    const reveal = (el, delay = 0) => {
-      setTimeout(() => {
-        el.style.opacity = 1;
-        el.style.transform = 'translateY(0)';
-      }, delay);
-    };
-    document.querySelectorAll('[data-reveal]').forEach(el => {
-      el.style.opacity = 0; el.style.transform = 'translateY(10px)';
-      reveal(el);
-    });
-    document.querySelectorAll('[data-reveal-delay]').forEach(el => {
-      const d = parseInt(el.getAttribute('data-reveal-delay'), 10) || 0;
-      el.style.opacity = 0; el.style.transform = 'translateY(10px)';
-      reveal(el, d);
-    });
-  </script>
-
-  <!-- ملاحظة مهمة:
-       ضع سكربت Supabase الخاص بك (الذي كتبناه سابقًا لإرسال نموذج اتصل بنا)
-       كما هو أسفل هذا التعليق. لا تغيّر أي شيء في الإرسال/المعرّفات. -->
-  <script>
-  function showToast(type, message){
-    const wrap = document.getElementById('toasts');
-    const el = document.createElement('div');
-    el.className = `toast ${type === 'error' ? 'error' : 'success'}`;
-    el.innerHTML = `
-      <div class="icon">${type === 'error' ? '⚠️' : '✅'}</div>
-      <div class="msg">${message}</div>
-      <button class="close" aria-label="إغلاق">×</button>
-    `;
-    const remove = () => {
-      el.style.transition = 'opacity .2s ease, transform .2s ease';
-      el.style.opacity = 0; el.style.transform = 'translateY(8px)';
-      setTimeout(() => el.remove(), 200);
-    };
-    el.querySelector('.close').onclick = remove;
-    wrap.appendChild(el);
-    setTimeout(remove, 4000);
-  }
-    showToast('success', 'تم إرسال رسالتك بنجاح! 🎉');
-showToast('error', 'حدث خطأ أثناء الإرسال، حاول مرة أخرى.');
-
-</script>
-
-<!-- Toasts -->
-<div id="toasts"></div>
-
-</body>
-</html>

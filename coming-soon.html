@@ -79,38 +79,49 @@
     <div class="msg" id="status"></div>
   </form>
 
-  <script src="https://unpkg.com/@supabase/supabase-js"></script>
-  <script>
-    const supabase = supabase.createClient(
-      "https://rrcjlkseuenjhnravytk.supabase.co",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyY2psa3NldWVuamhucmF2eXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2NTc2NDIsImV4cCI6MjA3MDIzMzY0Mn0.YOtEZzORHAwMZPoXCQwQo7eQudNuiyupRYUeDDOMAto"
-    );
+  <!-- Supabase JS v2 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // تهيئة Supabase بمشروعك
+  const SUPABASE_URL = "https://rrcjlkseuenjhnravytk.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJyY2psa3NldWVuamhucmF2eXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2NTc2NDIsImV4cCI6MjA3MDIzMzY0Mn0.YOtEZzORHAwMZPoXCQwQo7eQudNuiyupRYUeDDOMAto";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const form = document.getElementById("subscribeForm");
-    const status = document.getElementById("status");
+  // نفس الحقول كما هي
+  const subForm = document.getElementById('subscribeForm');
+  const subEmail = document.getElementById('subEmail');
+  const subNote  = document.getElementById('subNote');
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value.trim();
+  subForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      if (!email) {
-        status.style.color = "#f8d7da";
-        status.textContent = "الرجاء إدخال البريد الإلكتروني";
-        return;
-      }
+    const email = subEmail.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      subNote.style.color = '#ef4444';
+      subNote.textContent = 'الرجاء إدخال بريد صحيح.';
+      return;
+    }
 
-      const { error } = await supabase.from("launch_emails").insert([{ email }]);
+    subNote.style.color = '#64748b';
+    subNote.textContent = 'جاري التسجيل...';
 
-      if (error) {
-        status.style.color = "#ffb3b3";
-        status.textContent = "حدث خطأ أثناء الإرسال!";
-        console.error(error);
-      } else {
-        status.style.color = "lightgreen";
-        status.textContent = "✅ تم تسجيل بريدك بنجاح!";
-        form.reset();
-      }
-    });
-  </script>
+    // الإدخال في جدول launch_emails
+    const { error } = await supabaseClient
+      .from('launch_emails')
+      .insert([{ email }]);
+
+    if (error) {
+      console.error(error);
+      subNote.style.color = '#ef4444';
+      subNote.textContent = 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.';
+      return;
+    }
+
+    subNote.style.color = '#16a34a';
+    subNote.textContent = 'تم الاشتراك بنجاح! سنبلغك عند الإطلاق 🎉';
+    subEmail.value = '';
+  });
+</script>
+
 </body>
 </html>

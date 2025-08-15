@@ -7,9 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-     margin: 0;
+    margin: 0;
       font-family: 'Tajawal', sans-serif;
       background: linear-gradient(135deg, #5F4BDB, #7F9BFF);
+      background-size: 400% 400%;
+      animation: bgMove 15s ease infinite;
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -20,8 +22,12 @@
       padding: 20px;
     }
 
-   
- 
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     h1 {
       font-size: 3rem;
       margin-bottom: 20px;
@@ -73,7 +79,7 @@
 </head>
 <body>
   <h1>شيء كبير على وشك أن يبدأ</h1>
-  <p>استعدوا لإطلاق أكبر منصة توظيف من نوعها في العراق، تربط الباحثين عن العمل بالشركات التي تبحث عن الكفاءات الحقيقية. المنصة التي ستغيّر قواعد التوظيف قريباً جداً!</p>
+  <p>استعدوا لإطلاق أكبر منصة توظيف من نوعها في العراق، تربط الباحثين عن العمل بالشركات التي تبحث عن الكفاءات الحقيقية. المنصة التي ستغيّر قواعد اللعبة قريباً جداً!</p>
 
   <form id="subscribeForm">
     <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required />
